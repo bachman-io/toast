@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Balthazar&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+
+$body-bg:                   #333;
+$body-color:                #ddd;
+
+$theme-colors: (
+        "primary": #666,
+        "info": #0066cc
+);
+
+$primary:                   #666;
+$secondary:                 #999;
+$info:                      #006699;
+//$danger:                    #a02313;
+
+$link-color:                #fff;
+$link-decoration:           none;
+$link-hover-color:          darken($link-color, 15%);
+$link-hover-decoration:     underline;
+
+$blockquote-small-color:    #ddd;
+$code-color:                $body-color;
+
+// Jumbotron
+
+$jumbotron-padding:                 2rem !default;
+$jumbotron-color:                   null !default;
+$jumbotron-bg:                      #444;
+
+$table-head-bg:             #666;
+$table-head-color:          #fff;
+$table-border-color:        #666;
+
+$navbar-dark-color:                 #ddd;
+$navbar-dark-hover-color:           #fff;
+$navbar-dark-active-color:          #fff;
+$navbar-dark-disabled-color:        rgba(#aaa, .5);
+
+$nav-link-disabled-color:           #999;
+
+$nav-tabs-border-color:             #ddd;
+$nav-tabs-link-hover-border-color:  #ddd #ddd #444;
+$nav-tabs-link-active-color:        #fff;
+$nav-tabs-link-active-bg:           transparent;
+$nav-tabs-link-active-border-color: #ddd #ddd #444;
+
+$navbar-dark-toggler-border-color:  rgba(#ddd, .1);
+
+$dropdown-bg:               #444;
+$dropdown-border-color:     #444;
+$dropdown-link-color:       #ddd;
+$dropdown-link-hover-color: #ddd;
+$dropdown-link-hover-bg:    rgba(#444, 1.1);
+
+$hr-border-color:           #ddd;
+
+$headings-font-family:      'Balthazar', serif;
+$font-family-sans-serif:    'Open Sans';
+
+$pagination-bg:             #666;
+$pagination-border-color:   $pagination-bg;
+$pagination-hover-bg:       $pagination-bg;
+$pagination-hover-border-color:     $pagination-bg;
+$pagination-active-bg: #999;
+$pagination-disabled-color:         #bbb;
+$pagination-disabled-bg:            $pagination-bg;
+$pagination-disabled-border-color:  $pagination-bg;
+
+$card-bg:                   #444;
+$card-cap-bg:               #666;
+
+$input-bg:                  #666;
+$input-disabled-bg:         #666;
+$input-color:               #fff;
+$input-placeholder-color:   #ccc;
+$custom-control-indicator-bg: #999;
+$input-group-addon-bg:  #999;
+$input-group-addon-color: #fff;
+
+$breadcrumb-bg: #666;
+$breadcrumb-active-color: #ccc;
+
+$list-group-bg: #444;
+$list-group-hover-bg: #666;
+$list-group-action-color: #ddd;
+
+$modal-content-bg: #444;
+
+$popover-bg: #666;
+
+$progress-bar-bg: #666;
+$progress-bar-color: #ddd;
+$progress-bg: #444;
+
+/* Show it is fixed to the top */
+body {
+  margin-bottom: 60px;
+  padding-top: 4.7rem !important;
+}
+
+.bg-dark {
+  background: #444;
+}
+
+.footer {
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #666;
+  color: #fff
+}
+
+p.lead {
+  font-family: 'Balthazar', serif;
+}
+
+.blog-post-head {
+  width: 100%;
+  height: 300px;
+  background-color: #666;
+  padding: 2rem;
+}
+
+.card-header {
+  color: #fff;
+}
+
+.card-footer {
+  background-color: rgba(#000, .03) !important;
+}
+
+.btn-secondary {
+  color: #ddd !important;
+}
+
+pre code {
+  color: #ddd !important;
+}
+
+.form-control-plaintext {
+  color: #ddd !important;
+}
+
+.badge-secondary {
+  color: #fff !important;
+}
+
+.jumbotron-fluid {
+  min-height: 300px !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background: #666;
+}
+
+mark {
+  color: #fff;
+  background-color: #999 !important;
+}
+
+@import 'bootstrap';
+
+.text-muted {
+  color: #ccc !important;
+}
+
+a:active {
+  background: inherit !important;
+}
+
+figure.wp-block-image img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 1.5rem!important;
+  display: block !important;
+  height: auto;
+}
+
+span[lang="ja"] {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+svg.radical {
+  stroke: #fff;
+  stroke-width: 120;
+  fill: none;
+  stroke-linecap: square;
+  stroke-miterlimit: 2;
+  width: 1em;
+}
+
+.no-wrap {
+  white-space: nowrap !important;
+}
+
+.jumbotron {
+  padding: $jumbotron-padding ($jumbotron-padding / 2);
+  margin-bottom: $jumbotron-padding;
+  color: $jumbotron-color;
+  background-color: $jumbotron-bg;
+  @include border-radius($border-radius-lg);
+
+  @include media-breakpoint-up(sm) {
+    padding: ($jumbotron-padding * 2) $jumbotron-padding;
+  }
+}
+
+.jumbotron-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  @include border-radius(0);
+}
+
+.navbar {
+  background: #333 !important;
+  border-bottom: 1px solid #666 !important;
+}
