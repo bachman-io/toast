@@ -6,9 +6,9 @@ The Bachman I/O website, built using GatsbyJS, Contentful, and Bootstrap 5
 
 ## Builds
 
-| branch | status          |
-| ------ | --------------- |
-| main   | (netlify-badge) |
+| branch | Netlify          |
+| ------ | ---------------- |
+| main   | [![Netlify Status](https://api.netlify.com/api/v1/badges/ec7e2ec3-43ac-4ad7-a585-3eee7aa7d4d1/deploy-status)](https://app.netlify.com/sites/heuristic-spence-be8e87/deploys) |
 
 ## Install
 
