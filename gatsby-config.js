@@ -2,6 +2,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const GOOGLE_JSON = Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS, 'base64')
+
 module.exports = {
   siteMetadata: {
     title: `Bachman I/O`,
@@ -34,14 +36,19 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        // Learn about environment variables: https://gatsby.app/env-vars
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         host: process.env.CONTENTFUL_HOST,
         downloadLocal: false
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-google-spreadsheet",
+      options: {
+        spreadsheetId: "1OfEJQjGGILU4P0A4W5OM49qULxSevWhxwCwMJWD2hU8",
+        spreadsheetName: "GameStats",
+        typePrefix: "GoogleSheet",
+        credentials: JSON.parse(GOOGLE_JSON),
+      }
+    }
   ],
 }

@@ -15,18 +15,15 @@ const Header = () => (
                 <li className="nav-item active">
                     <Link className="nav-link" to={'/'}>Home <span className="sr-only">(current)</span></Link>
                 </li>
-                {/*<li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="dropdown-gaming" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Gaming
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="#">Action</a>
-                        <a className="dropdown-item" href="#">Another action</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">Something else here</a>
+                        <Link className="dropdown-item" to="/gaming/gta-online">GTA Online</Link>
                     </div>
-                </li>*/}
+                </li>
             </ul>
         </div>
     </nav>

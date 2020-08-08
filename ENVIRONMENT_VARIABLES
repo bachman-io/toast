@@ -2,3 +2,4 @@
 CONTENTFUL_SPACE_ID=[copy your Space ID from the Contentful dashboard]
 CONTENTFUL_ACCESS_TOKEN=[copy your API token, either the live or preview one. Generally it's the preview one you want for local development.]
 CONTENTFUL_HOST=[priview.contentful.com for previews, cdn.contentful.com for live data]
+GOOGLE_SERVICE_ACCOUNT_CREDENTIALS=[Create a Service Account for your Google API Project that has access to Google Sheets, minify it, and encode in base64.]

@@ -17,8 +17,6 @@ query HomePageQuery {
     jumbotronButtonUrl
   }
 }
-
-
 `
 
 const IndexPage = ({ data }) => (
