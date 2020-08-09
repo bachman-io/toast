@@ -6,7 +6,7 @@ import SEO from "../../components/seo"
 
 export const query = graphql`
 query GTAQuery {
-  gta: allGoogleSheetGameStatsGtaWishList {
+  gta_wishlist: allGoogleSheetGameStatsGtaWishList {
     nodes {
       item
       buyAt
@@ -14,19 +14,19 @@ query GTAQuery {
       daysToGrind
     }
   }
-  cost: googleSheetGameStatsGtaWishList(summaryTitle: {eq: "Total Cost"}) {
+  cost: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Cost"}) {
     summaryAmount
   }
-  bank: googleSheetGameStatsGtaWishList(summaryTitle: {eq: "Money in Bank"}) {
+  bank: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Money in Bank"}) {
     summaryAmount
   }
-  grindcashleft: googleSheetGameStatsGtaWishList(summaryTitle: {eq: "Money Left to Grind"}) {
+  grindcashleft: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Money Left to Grind"}) {
     summaryAmount
   }
-  grindcashday: googleSheetGameStatsGtaWishList(summaryTitle: {eq: "Grind Money Per Day"}) {
+  grindcashday: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Grind Money Per Day"}) {
     summaryAmount
   }
-  grinddays: googleSheetGameStatsGtaWishList(summaryTitle: {eq: "Grind Days Remaining"}) {
+  grinddays: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Grind Days Remaining"}) {
     summaryAmount
   }
 }
@@ -98,7 +98,7 @@ const GTAOnline = ({ data }) => (
                         </tr>
                         </thead>
                         <tbody>
-                        { data.gta.nodes.map(g => (
+                        { data.gta_wishlist.nodes.map(g => (
                             <tr>
                                 <th scope="row">{ g.item }</th>
                                 <td>{ g.buyAt }</td>
