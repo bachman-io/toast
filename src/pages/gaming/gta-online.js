@@ -29,6 +29,9 @@ query GTAQuery {
   grinddays: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Grind Days Remaining"}) {
     summaryAmount
   }
+  finishdate: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Wish List Completion Date"}) {
+    summaryDate
+  }
   vehicleworth: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Vehicle Value"}) {
     summaryAmount
   }
@@ -101,6 +104,10 @@ const GTAOnline = ({ data }) => (
                         <tr>
                             <th scope="row">Grind Days Remaining</th>
                             <td>{ data.grinddays.summaryAmount }</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Wish List Completion Date</th>
+                            <td>{ new Date(data.finishdate.summaryDate).toLocaleDateString() }</td>
                         </tr>
                         <tr>
                             <th scope="row">Total Vehicle Value</th>
