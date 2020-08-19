@@ -13,9 +13,9 @@ function Logo() {
         }`
     );
 
-    const logoUrl = contentfulAsset.file.url;
+    const logoUrl = contentfulAsset.file.url
 
     return (<img src={logoUrl} width="270" height="30" alt="Bachman I/O" />)
 }
 
-export default Logo;
+export default Logo

@@ -12,26 +12,28 @@ import {Link} from 'gatsby'
 import Header from "./header"
 import '../scss/app.scss'
 
-const Layout = ({ children }) => {
-
-  return (
-    <>
-      <Header />
-        {children}
-        <footer id="footer" className="mt-5">
-          <div className="container">
-            <hr />
-            <div className="row pt-3">
-              <div className="col-sm">
-                <p className="text-center text-sm-left">
-                  &copy; {new Date().getFullYear()} <Link to={"/"}>Collin Bachman</Link> | <Link to="/privacy">Privacy</Link>
-                </p>
+class Layout extends React.Component {
+  render() {
+    const { children } = this.props
+    return(
+        <>
+          <Header />
+          {children}
+          <footer id="footer" className="mt-5">
+            <div className="container">
+              <hr />
+              <div className="row pt-3">
+                <div className="col-sm">
+                  <p className="text-center text-sm-left">
+                    &copy; {new Date().getFullYear()} <Link to={"/"}>Collin Bachman</Link> | <Link to="/privacy">Privacy</Link>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </footer>
-    </>
-  )
+          </footer>
+        </>
+    )
+  }
 }
 
 Layout.propTypes = {
