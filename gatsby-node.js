@@ -18,30 +18,6 @@ const { GraphQLFloat, GraphQLString } = require('gatsby/graphql');
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
     if (type.name === `ContentfulBlogPost`) {
         return {
-            publishYear: {
-                type: GraphQLFloat,
-                resolve: source => {
-                    return new Date(source.publishDate).getFullYear();
-                }
-            },
-            publishMonthInt: {
-                type: GraphQLFloat,
-                resolve: source => {
-                    return new Date(source.publishDate).getMonth() + 1;
-                }
-            },
-            publishMonthName: {
-                type: GraphQLString,
-                resolve: source => {
-                    return new Date(source.publishDate).toLocaleString('default', { month: 'long' });
-                }
-            },
-            publishDay: {
-                type: GraphQLFloat,
-                resolve: source => {
-                    return new Date(source.publishDate).getDate();
-                }
-            },
             fullURI: {
                 type: GraphQLString,
                 resolve: source => {
