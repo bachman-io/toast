@@ -2,6 +2,12 @@
   <dictionary name="collin">
     <words>
       <w>bachman</w>
+      <w>finishdate</w>
+      <w>grindcashday</w>
+      <w>grindcashleft</w>
+      <w>grinddays</w>
+      <w>toggler</w>
+      <w>vehicleworth</w>
     </words>
   </dictionary>
 </component>

@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 
-const { GraphQLFloat, GraphQLString } = require('gatsby/graphql');
+const { GraphQLString } = require('gatsby/graphql');
 
 /*
  Add year number (e.g. 2020),
@@ -16,16 +16,16 @@ const { GraphQLFloat, GraphQLString } = require('gatsby/graphql');
  to Contentful Blog Posts
 */
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
-    if (type.name === `ContentfulBlogPost`) {
-        return {
-            fullURI: {
-                type: GraphQLString,
-                resolve: source => {
-                    date = new Date(source.publishDate)
-                    return date.getFullYear() + '-' + (date.getMonth() + 1).toLocaleString('en', {minimumIntegerDigits:2}) + '-' + date.getDate().toLocaleString('en', {minimumIntegerDigits:2}) + '-' + source.slug;
-                }
-            }
-        };
-    }
-    return {};
+  if (type.name === 'ContentfulBlogPost') {
+    return {
+      fullURI: {
+        type: GraphQLString,
+        resolve: (source) => {
+          const date = new Date(source.publishDate);
+          return `${date.getFullYear()}-${(date.getMonth() + 1).toLocaleString('en', { minimumIntegerDigits: 2 })}-${date.getDate().toLocaleString('en', { minimumIntegerDigits: 2 })}-${source.slug}`;
+        },
+      },
+    };
+  }
+  return {};
 };
