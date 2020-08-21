@@ -9,11 +9,8 @@
 const { GraphQLString } = require('gatsby/graphql');
 
 /*
- Add year number (e.g. 2020),
- month number (e.g. 7),
- month name (e.g. July),
- and full URI (e.g. 2018-06-17-how-i-review-things)
- to Contentful Blog Posts
+ Add full URI (e.g. 2018-06-17-how-i-review-things)
+ to Contentful Contentful Posts
 */
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   if (type.name === 'ContentfulBlogPost') {
