@@ -17,7 +17,7 @@ function Layout({ children }) {
     graphql`
       query {
         site {
-          buildTime(formatString: "MM/DD/YY h:mm A")
+          buildTime
           siteMetadata {
             version
           }
@@ -37,7 +37,7 @@ function Layout({ children }) {
                 Bachman I/O | Version
                 { ` ${site.siteMetadata.version} `}
                 | Built:
-                { ` ${site.buildTime}`}
+                { ` ${new Date(site.buildTime).toLocaleString('en-us', { dateStyle: 'short', timeStyle: 'short' })}`}
                 <br />
                 &copy;
                 {' '}
