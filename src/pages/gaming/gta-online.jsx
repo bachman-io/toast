@@ -75,6 +75,10 @@ function GTAOnline({ data }) {
                 <td>{ data.grinddays.summaryAmount }</td>
               </tr>
               <tr>
+                <th scope="row">Average Days to Grind Per Item</th>
+                <td>{ data.avggrind.summaryAmount }</td>
+              </tr>
+              <tr>
                 <th scope="row">Wish List Completion Date</th>
                 <td>{ new Date(data.finishdate.summaryDate).toLocaleDateString() }</td>
               </tr>
@@ -195,6 +199,9 @@ query GTAQuery {
   grinddays: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Grind Days Remaining"}) {
     summaryAmount
   }
+  avggrind: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Average Days to Grind"}) {
+    summaryAmount
+  }
   finishdate: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Wish List Completion Date"}) {
     summaryDate
   }
@@ -234,6 +241,9 @@ GTAOnline.propTypes = {
       summaryAmount: PropTypes.string.isRequired,
     }).isRequired,
     grinddays: PropTypes.shape({
+      summaryAmount: PropTypes.string.isRequired,
+    }).isRequired,
+    avggrind: PropTypes.shape({
       summaryAmount: PropTypes.string.isRequired,
     }).isRequired,
     finishdate: PropTypes.shape({
