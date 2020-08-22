@@ -122,7 +122,9 @@ function GTAOnline({ data }) {
                           )}
                         </td>
                         <td>
-                          <a href={v.gtaWikiLink} target="_blank" rel="nofollow noreferrer">GTA Wiki</a>
+                          <a className="btn btn-sm btn-primary" href={v.gtaBaseLink} target="_blank" rel="nofollow noreferrer">GTA Base</a>
+                          {' '}
+                          <a className="btn btn-sm btn-primary" href={v.gtaWikiLink} target="_blank" rel="nofollow noreferrer">GTA Wiki</a>
                         </td>
                       </tr>
                     ))}
@@ -136,7 +138,7 @@ function GTAOnline({ data }) {
           <div className="col">
             <h2>Wish List</h2>
             <p>
-              If an item has a negative Days to Grind, it means I can afford it,
+              If an item has a negative Days Left to Grind, it means I can afford it,
               but haven&apos;t bought it yet in favor of saving up for a different
               item.
             </p>
@@ -146,7 +148,8 @@ function GTAOnline({ data }) {
                   <th scope="col">Item</th>
                   <th scope="col">Buy At</th>
                   <th scope="col">Cost</th>
-                  <th scope="col">Days to Grind</th>
+                  <th scope="col">Total Grind Days</th>
+                  <th scope="col">Days Left to Grind</th>
                 </tr>
               </thead>
               <tbody>
@@ -160,6 +163,7 @@ function GTAOnline({ data }) {
                         { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
                       )}
                     </td>
+                    <td>{ g.totalGrindDays }</td>
                     <td>{ g.daysToGrind }</td>
                   </tr>
                 )) }
@@ -182,6 +186,7 @@ query GTAQuery {
       buyAt
       cost
       daysToGrind
+      totalGrindDays
     }
   }
   cost: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Cost"}) {
@@ -216,6 +221,7 @@ query GTAQuery {
         vehicle
         cost
         gtaWikiLink
+        gtaBaseLink
       }
     }
   }
