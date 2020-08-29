@@ -137,35 +137,46 @@ function GTAOnline({ data }) {
         <div className="row mb-5">
           <div className="col">
             <h2>Wish List</h2>
-            <p>
-              If an item has a negative Days Left to Grind, it means I can afford it,
-              but haven&apos;t bought it yet in favor of saving up for a different
-              item.
-            </p>
             <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Item</th>
                   <th scope="col">Buy At</th>
-                  <th scope="col">Cost</th>
-                  <th scope="col">Total Grind Days</th>
-                  <th scope="col">Days Left to Grind</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Remaining</th>
                 </tr>
               </thead>
               <tbody>
                 { data.wishlist.nodes.map((g) => (
-                  <tr>
-                    <th scope="row">{ g.item }</th>
-                    <td>{ g.buyAt }</td>
-                    <td>
-                      { g.cost.toLocaleString(
-                        'en-us',
-                        { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                      )}
-                    </td>
-                    <td>{ g.totalGrindDays }</td>
-                    <td>{ g.daysToGrind }</td>
-                  </tr>
+                  <>
+                    <tr>
+                      <th scope="row" rowSpan="2">{ g.item }</th>
+                      <td rowSpan="2">{ g.buyAt }</td>
+                      <td><strong>Cost:</strong></td>
+                      <td>
+                        { g.cost.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                      <td>
+                        { g.moneyToGrind > 0 ? g.moneyToGrind.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        ) : 0}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Grind Days: </strong></td>
+                      <td>
+                        { g.totalGrindDays }
+                      </td>
+                      <td>
+                        { g.daysToGrind > 0 ? g.daysToGrind : 0 }
+                      </td>
+                    </tr>
+                  </>
                 )) }
               </tbody>
             </table>
@@ -187,6 +198,7 @@ query GTAQuery {
       cost
       daysToGrind
       totalGrindDays
+      moneyToGrind
     }
   }
   cost: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Cost"}) {
