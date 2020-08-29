@@ -133,7 +133,7 @@ IndexPage.propTypes = {
       pageTitle: PropTypes.string.isRequired,
       showJumbotron: PropTypes.bool.isRequired,
       showFeaturedPost: PropTypes.bool.isRequired,
-      showLatestPost: PropTypes.string.isRequired,
+      showLatestPost: PropTypes.bool.isRequired,
       showLatestReview: PropTypes.bool.isRequired,
       jumbotronHeading: PropTypes.string.isRequired,
       jumbotronSubheading: PropTypes.string.isRequired,
@@ -158,7 +158,26 @@ IndexPage.propTypes = {
         fullURI: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
-    latestPost: PropTypes.arrayOf(PropTypes.shape({
+    latestPost: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape(
+      {
+        coverImage: PropTypes.shape({
+          fluid: PropTypes.shape({
+            src: PropTypes.string,
+            srcSet: PropTypes.string,
+            srcSetWebp: PropTypes.string,
+          }),
+          description: PropTypes.string,
+        }),
+        title: PropTypes.string.isRequired,
+        publishDate: PropTypes.string.isRequired,
+        summary: PropTypes.shape({
+          summary: PropTypes.string.isRequired,
+        }).isRequired,
+        nsfw: PropTypes.bool.isRequired,
+        fullURI: PropTypes.string.isRequired,
+      },
+    ))).isRequired,
+    latestReview: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape({
       coverImage: PropTypes.shape({
         fluid: PropTypes.shape({
           src: PropTypes.string,
@@ -173,25 +192,8 @@ IndexPage.propTypes = {
         summary: PropTypes.string.isRequired,
       }).isRequired,
       nsfw: PropTypes.bool.isRequired,
-      fullURI: PropTypes.string.isRequired,
-    })).isRequired,
-    latestReview: PropTypes.arrayOf(PropTypes.shape({
-      coverImage: PropTypes.shape({
-        fluid: PropTypes.shape({
-          src: PropTypes.string,
-          srcSet: PropTypes.string,
-          srcSetWebp: PropTypes.string,
-        }),
-        description: PropTypes.string,
-      }),
-      title: PropTypes.string.isRequired,
-      publishDate: PropTypes.string.isRequired,
-      summary: PropTypes.shape({
-        summary: PropTypes.string.isRequired,
-      }).isRequired,
-      nsfw: PropTypes.bool.isRequired,
-      score: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
       slug: PropTypes.string.isRequired,
-    })).isRequired,
+    }))).isRequired,
   }).isRequired,
 };

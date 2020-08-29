@@ -34,7 +34,7 @@ export default BlogPostSummary;
 BlogPostSummary.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
+    summary: PropTypes.objectOf(PropTypes.string).isRequired,
     fullURI: PropTypes.string.isRequired,
     coverImage: PropTypes.oneOfType([
       PropTypes.node,

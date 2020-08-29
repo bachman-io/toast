@@ -34,63 +34,65 @@ function GTAOnline({ data }) {
               situation.
             </p>
             <table className="table">
-              <tr>
-                <th scope="row">Wish List Total Cost</th>
-                <td>
-                  { data.cost.summaryAmount.toLocaleString(
-                    'en-us',
-                    { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Money in Bank</th>
-                <td>
-                  { data.bank.summaryAmount.toLocaleString(
-                    'en-us',
-                    { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Money Left to Grind</th>
-                <td>
-                  { data.grindcashleft.summaryAmount.toLocaleString(
-                    'en-us',
-                    { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Grind Money Per Day</th>
-                <td>
-                  { data.grindcashday.summaryAmount.toLocaleString(
-                    'en-us',
-                    { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Grind Days Remaining</th>
-                <td>{ data.grinddays.summaryAmount }</td>
-              </tr>
-              <tr>
-                <th scope="row">Average Days to Grind Per Item</th>
-                <td>{ data.avggrind.summaryAmount }</td>
-              </tr>
-              <tr>
-                <th scope="row">Wish List Completion Date</th>
-                <td>{ new Date(data.finishdate.summaryDate).toLocaleDateString() }</td>
-              </tr>
-              <tr>
-                <th scope="row">Total Vehicle Value</th>
-                <td>
-                  { data.vehicleworth.summaryAmount.toLocaleString(
-                    'en-us',
-                    { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                  )}
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th scope="row">Wish List Total Cost</th>
+                  <td>
+                    { data.cost.summaryAmount.toLocaleString(
+                      'en-us',
+                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Money in Bank</th>
+                  <td>
+                    { data.bank.summaryAmount.toLocaleString(
+                      'en-us',
+                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Money Left to Grind</th>
+                  <td>
+                    { data.grindcashleft.summaryAmount.toLocaleString(
+                      'en-us',
+                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Grind Money Per Day</th>
+                  <td>
+                    { data.grindcashday.summaryAmount.toLocaleString(
+                      'en-us',
+                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Grind Days Remaining</th>
+                  <td>{ data.grinddays.summaryAmount }</td>
+                </tr>
+                <tr>
+                  <th scope="row">Average Days to Grind Per Item</th>
+                  <td>{ data.avggrind.summaryAmount }</td>
+                </tr>
+                <tr>
+                  <th scope="row">Wish List Completion Date</th>
+                  <td>{ new Date(data.finishdate.summaryDate).toLocaleDateString() }</td>
+                </tr>
+                <tr>
+                  <th scope="row">Total Vehicle Value</th>
+                  <td>
+                    { data.vehicleworth.summaryAmount.toLocaleString(
+                      'en-us',
+                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                    )}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -99,7 +101,7 @@ function GTAOnline({ data }) {
             <h2>Vehicles</h2>
             <p>These are all the vehicles I own in the game and their worth.</p>
             { data.vehicles.locations.map((l) => (
-              <>
+              <React.Fragment key={l.location}>
                 <h3>{ l.location }</h3>
                 <table className="table">
                   <thead>
@@ -112,7 +114,7 @@ function GTAOnline({ data }) {
                   </thead>
                   <tbody>
                     { l.nodes.map((v) => (
-                      <tr>
+                      <tr key={v.vehicle}>
                         <td>{ v.floor }</td>
                         <td>{ v.vehicle }</td>
                         <td>
@@ -130,7 +132,7 @@ function GTAOnline({ data }) {
                     ))}
                   </tbody>
                 </table>
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -149,7 +151,7 @@ function GTAOnline({ data }) {
               </thead>
               <tbody>
                 { data.wishlist.nodes.map((g) => (
-                  <>
+                  <React.Fragment key={g.item}>
                     <tr>
                       <th scope="row" rowSpan="2">{ g.item }</th>
                       <td rowSpan="2">{ g.buyAt }</td>
@@ -176,7 +178,7 @@ function GTAOnline({ data }) {
                         { g.daysToGrind > 0 ? g.daysToGrind : 0 }
                       </td>
                     </tr>
-                  </>
+                  </React.Fragment>
                 )) }
               </tbody>
             </table>
@@ -247,29 +249,29 @@ GTAOnline.propTypes = {
       nodes: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
     cost: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     bank: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     grindcashleft: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     grindcashday: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     grinddays: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     avggrind: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     finishdate: PropTypes.shape({
       summaryDate: PropTypes.string.isRequired,
     }).isRequired,
     vehicleworth: PropTypes.shape({
-      summaryAmount: PropTypes.string.isRequired,
+      summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
-    vehicles: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
+    vehicles: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
   }).isRequired,
 };

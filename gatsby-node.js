@@ -6,6 +6,8 @@
 
 // You can delete this file if you're not using it
 
+const path = require('path');
+
 const { GraphQLString } = require('gatsby/graphql');
 
 /*
@@ -25,4 +27,34 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
     };
   }
   return {};
+};
+
+/*
+Create Blog Post pages
+ */
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const BlogPost = path.resolve('./src/templates/BlogPost.jsx');
+  return graphql(`
+  query BlogPageQuery {
+    blogPosts: allContentfulBlogPost {
+      nodes {
+        fullURI
+      }
+    }
+  }
+  `).then((result) => {
+    if (result.errors) {
+      throw result.errors;
+    }
+    result.data.blogPosts.nodes.forEach((post) => {
+      createPage({
+        path: `/blog/${post.fullURI}/`,
+        component: BlogPost,
+        context: {
+          fullURI: post.fullURI,
+        },
+      });
+    });
+  });
 };

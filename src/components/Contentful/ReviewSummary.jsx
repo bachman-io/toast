@@ -37,9 +37,9 @@ export default ReviewSummary;
 ReviewSummary.propTypes = {
   review: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
+    summary: PropTypes.objectOf(PropTypes.string).isRequired,
     slug: PropTypes.string.isRequired,
-    score: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
     coverImage: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.shape({
