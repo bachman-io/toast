@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
@@ -12,6 +12,13 @@ function GTAOnline({ data }) {
       <div className="container">
         <div className="row">
           <div className="col">
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                <li className="breadcrumb-item">Gaming</li>
+                <li className="breadcrumb-item active" aria-current="page">GTA Online</li>
+              </ol>
+            </nav>
             <h1 className="display-1">GTA Online</h1>
             <h2>Updated at Least Once a Week</h2>
             <button type="button" className="btn btn-primary">
