@@ -34,6 +34,7 @@ Create Blog Post pages
  */
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
+  const Page = path.resolve('./src/templates/Page.jsx');
   const BlogPost = path.resolve('./src/templates/BlogPost.jsx');
   const Review = path.resolve('./src/templates/Review.jsx');
   return graphql(`
@@ -48,11 +49,25 @@ exports.createPages = ({ graphql, actions }) => {
       slug
     }
   }
+  pages: allContentfulPage {
+    nodes {
+      slug
+    }
+  }
 }
   `).then((result) => {
     if (result.errors) {
       throw result.errors;
     }
+    result.data.pages.nodes.forEach((page) => {
+      createPage({
+        path: `/${page.slug}/`,
+        component: Page,
+        context: {
+          slug: page.slug,
+        },
+      });
+    });
     result.data.blogPosts.nodes.forEach((post) => {
       createPage({
         path: `/blog/${post.fullURI}/`,
