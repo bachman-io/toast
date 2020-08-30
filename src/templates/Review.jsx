@@ -5,17 +5,17 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import RichText from '../components/Contentful/RichText';
 
-function BlogPost({ data }) {
+function Review({ data }) {
   const {
-    title, coverImage, fromDate, publishDate, summary, nsfw, content,
-  } = data.blogPost;
+    title, coverImage, fromDate, publishDate, summary, nsfw, content, score,
+  } = data.review;
 
   return (
     <Layout>
       <SEO
         title={
-        nsfw ? `[NSFW] Blog: ${title}` : `Blog: ${title}`
-      }
+          nsfw ? `[NSFW] Review: ${title}` : `Review: ${title}`
+        }
         description={summary.summary}
       />
       <div className="container">
@@ -23,7 +23,7 @@ function BlogPost({ data }) {
           <div className="col">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item"><Link to="/blog">Blog</Link></li>
+                <li className="breadcrumb-item"><Link to="/reviews">Reviews</Link></li>
                 <li className="breadcrumb-item active" aria-current="page">{title}</li>
               </ol>
             </nav>
@@ -39,6 +39,11 @@ function BlogPost({ data }) {
                 <p className="lead text-center">{summary.summary}</p>
                 <hr />
                 <RichText json={content.json} />
+                <hr />
+                <h2>
+                  Score:
+                  {` ${score}/10`}
+                </h2>
               </div>
               <div className="card-footer">
                 <p>
@@ -62,11 +67,11 @@ function BlogPost({ data }) {
   );
 }
 
-export default BlogPost;
+export default Review;
 
 export const pageQuery = graphql`
-query BlogPostQuery($fullURI: String!) {
-  blogPost: contentfulBlogPost(fullURI: {eq: $fullURI}) {
+query ReviewQuery($slug: String!) {
+  review: contentfulReview(slug: {eq: $slug}) {
     title
     coverImage {
       fluid {
@@ -85,14 +90,15 @@ query BlogPostQuery($fullURI: String!) {
     content {
       json
     }
+    score
   }
 }
 
 `;
 
-BlogPost.propTypes = {
+Review.propTypes = {
   data: PropTypes.shape({
-    blogPost: PropTypes.shape({
+    review: PropTypes.shape({
       title: PropTypes.string.isRequired,
       summary: PropTypes.objectOf(PropTypes.string).isRequired,
       coverImage: PropTypes.oneOfType([
@@ -110,6 +116,7 @@ BlogPost.propTypes = {
       publishDate: PropTypes.string.isRequired,
       nsfw: PropTypes.bool.isRequired,
       content: PropTypes.objectOf(PropTypes.any).isRequired,
+      score: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
 };

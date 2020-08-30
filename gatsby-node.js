@@ -12,7 +12,7 @@ const { GraphQLString } = require('gatsby/graphql');
 
 /*
  Add full URI (e.g. 2018-06-17-how-i-review-things)
- to Contentful Contentful Posts
+ to Contentful Blog Posts
 */
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   if (type.name === 'ContentfulBlogPost') {
@@ -35,14 +35,20 @@ Create Blog Post pages
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   const BlogPost = path.resolve('./src/templates/BlogPost.jsx');
+  const Review = path.resolve('./src/templates/Review.jsx');
   return graphql(`
-  query BlogPageQuery {
-    blogPosts: allContentfulBlogPost {
-      nodes {
-        fullURI
-      }
+  query PageQuery {
+  blogPosts: allContentfulBlogPost {
+    nodes {
+      fullURI
     }
   }
+  reviews: allContentfulReview {
+    nodes {
+      slug
+    }
+  }
+}
   `).then((result) => {
     if (result.errors) {
       throw result.errors;
@@ -53,6 +59,15 @@ exports.createPages = ({ graphql, actions }) => {
         component: BlogPost,
         context: {
           fullURI: post.fullURI,
+        },
+      });
+    });
+    result.data.reviews.nodes.forEach((review) => {
+      createPage({
+        path: `/reviews/${review.slug}`,
+        component: Review,
+        context: {
+          slug: review.slug,
         },
       });
     });
