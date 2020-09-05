@@ -5,16 +5,18 @@ import { Link } from 'gatsby';
 function BlogPostSummary(props) {
   const { post, cardTitle } = props;
   return (
-    <div className="card mb-5">
+    <div className="card mb-5 h-100">
       { cardTitle && (
         <h2 className="card-header">{ cardTitle }</h2>
       )}
       { post.coverImage && (
-        <picture>
-          <source type="image/webp" srcSet={post.coverImage.fluid.srcSetWebp} />
-          <source type="image/png" srcSet={post.coverImage.fluid.srcSet} />
-          <img className="card-img-top" src={post.coverImage.fluid.src} alt={post.coverImage.description} />
-        </picture>
+        <Link to={`/blog/${post.fullURI}`}>
+          <picture>
+            <source type="image/webp" srcSet={post.coverImage.fluid.srcSetWebp} />
+            <source type="image/png" srcSet={post.coverImage.fluid.srcSet} />
+            <img className="card-img-top" src={post.coverImage.fluid.src} alt={post.coverImage.description} />
+          </picture>
+        </Link>
       )}
       <div className="card-body">
         { !post.coverImage && (

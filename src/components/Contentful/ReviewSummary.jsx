@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 function ReviewSummary(props) {
   const { review, cardTitle } = props;
   return (
-    <div className="card mb-5">
+    <div className="card mb-5 h-100">
       { cardTitle && (
         <h2 className="card-header">{ cardTitle }</h2>
       )}

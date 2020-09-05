@@ -30,7 +30,7 @@ function IndexPage({ data }) {
         { data.contentfulHomePage.showFeaturedPost && (
           <div className="row">
             <div className="col" />
-            <div className="col-10">
+            <div className="col-10 mb-5">
               <BlogPostSummary cardTitle="Featured Blog Post" post={data.contentfulHomePage.featuredPost} />
             </div>
             <div className="col" />
@@ -39,7 +39,7 @@ function IndexPage({ data }) {
         { (data.contentfulHomePage.showLatestPost && data.contentfulHomePage.showLatestReview) && (
           <div className="row">
             <div className="col">
-              <div className="card-group">
+              <div className="card-group h-100">
                 <BlogPostSummary cardTitle="Latest Blog Post" post={data.latestPost.nodes[0]} />
                 <ReviewSummary cardTitle="Latest Review" review={data.latestReview.nodes[0]} />
               </div>
