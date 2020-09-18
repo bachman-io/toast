@@ -70,6 +70,15 @@ function GTAOnline({ data }) {
                   </td>
                 </tr>
                 <tr>
+                  <th scope="row">Grind Money Shark Card Value (in real US Dollars)</th>
+                  <td>
+                    { data.sharkcards.summaryAmount.toLocaleString(
+                      'en-us',
+                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                    )}
+                  </td>
+                </tr>
+                <tr>
                   <th scope="row">Grind Money Per Day</th>
                   <td>
                     { data.grindcashday.summaryAmount.toLocaleString(
@@ -234,6 +243,9 @@ query GTAQuery {
   vehicleworth: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Vehicle Value"}) {
     summaryAmount
   }
+  sharkcards: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Shark Card Value"}) {
+    summaryAmount
+  }
   vehicles: allGoogleSheetGameStatsGtaVehicles(sort: {fields: floor, order: ASC}) {
     locations: group(field: location) {
       location: fieldValue
@@ -277,6 +289,9 @@ GTAOnline.propTypes = {
       summaryDate: PropTypes.string.isRequired,
     }).isRequired,
     vehicleworth: PropTypes.shape({
+      summaryAmount: PropTypes.number.isRequired,
+    }).isRequired,
+    sharkcards: PropTypes.shape({
       summaryAmount: PropTypes.number.isRequired,
     }).isRequired,
     vehicles: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
