@@ -9,7 +9,7 @@ module.exports = {
     title: 'Bachman I/O',
     description: 'The sort-of official website of Collin Bachman, I guess',
     author: 'Collin Bachman',
-    version: '2.0-alpha2',
+    version: '2.0-alpha3',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
