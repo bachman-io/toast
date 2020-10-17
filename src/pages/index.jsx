@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import BlogPostSummary from '../components/Contentful/BlogPostSummary';
 import ReviewSummary from '../components/Contentful/ReviewSummary';
+import RichText from '../components/Contentful/RichText';
 
 function IndexPage({ data }) {
   return (
@@ -46,6 +47,15 @@ function IndexPage({ data }) {
             </div>
           </div>
         ) }
+        <div className="row">
+          <div className="col">
+            <hr />
+            <h1 className="display-1 text-center">Site News</h1>
+            <h1>{ data.latestAnnouncement.nodes[0].title }</h1>
+            <p><em>{ data.latestAnnouncement.nodes[0].publishDate }</em></p>
+            <RichText json={data.latestAnnouncement.nodes[0].content.json} />
+          </div>
+        </div>
       </div>
     </Layout>
   );
@@ -123,6 +133,15 @@ query HomePageQuery {
       slug
     }
   }
+  latestAnnouncement: allContentfulAnnouncement(sort: {fields: publishDate, order: DESC}, limit: 1) {
+    nodes {
+      title
+      publishDate(fromNow: true)
+      content {
+        json
+      }
+    }
+  }
 }
 
 `;
@@ -194,6 +213,11 @@ IndexPage.propTypes = {
       nsfw: PropTypes.bool.isRequired,
       score: PropTypes.number.isRequired,
       slug: PropTypes.string.isRequired,
+    }))).isRequired,
+    latestAnnouncement: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      publishDate: PropTypes.string.isRequired,
+      content: PropTypes.objectOf(PropTypes.any).isRequired,
     }))).isRequired,
   }).isRequired,
 };
