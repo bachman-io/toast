@@ -9,7 +9,7 @@ function BlogPostSummary(props) {
       { cardTitle && (
         <h2 className="card-header">{ cardTitle }</h2>
       )}
-      { post.coverImage && (
+      { post.coverImage.fluid && (
         <Link to={`/blog/${post.fullURI}`}>
           <picture>
             <source type="image/webp" srcSet={post.coverImage.fluid.srcSetWebp} />
@@ -19,8 +19,8 @@ function BlogPostSummary(props) {
         </Link>
       )}
       <div className="card-body">
-        { !post.coverImage && (
-          <h2 className="card-title"><Link to={`/blog/${post.fullURI}`}>{ post.title }</Link></h2>
+        { !post.coverImage.fluid && (
+          <h1 className="card-title"><Link to={`/blog/${post.fullURI}`}>{ post.title }</Link></h1>
         )}
         <p className="card-text">{ post.summary.summary }</p>
       </div>

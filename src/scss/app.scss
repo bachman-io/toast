@@ -3,20 +3,22 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
 
-$body-bg:                   #333;
-$body-color:                #ddd;
+$body-bg:                   #000D14;
+$body-color:                #eee;
+
+$headings-color: #95B2DB;
 
 $theme-colors: (
-        "primary": #666,
+        "primary": #0055C4,
         "info": #0066cc
 );
 
-$primary:                   #666;
-$secondary:                 #999;
-$info:                      #006699;
+$primary:                   #0055C4;
+$secondary:                 #0055C4;
+$info:                      #0055C4;
 //$danger:                    #a02313;
 
-$link-color:                #fff;
+$link-color:                #eee;
 $link-decoration:           none;
 $link-hover-color:          darken($link-color, 15%);
 $link-hover-decoration:     underline;
@@ -28,74 +30,74 @@ $code-color:                $body-color;
 
 $jumbotron-padding:                 2rem !default;
 $jumbotron-color:                   null !default;
-$jumbotron-bg:                      #444;
+$jumbotron-bg:                      #0E316D;
 
-$table-head-bg:             #666;
+$table-head-bg:             #0055C4;
 $table-head-color:          #fff;
-$table-border-color:        #666;
+$table-border-color:        #95B2DB;
 
-$navbar-dark-color:                 #ddd;
-$navbar-dark-hover-color:           #fff;
-$navbar-dark-active-color:          #fff;
+$navbar-dark-color:                 #95B2DB;
+$navbar-dark-hover-color:           #95B2DB;
+$navbar-dark-active-color:          #95B2DB;
 $navbar-dark-disabled-color:        rgba(#aaa, .5);
 
 $nav-link-disabled-color:           #999;
 
-$nav-tabs-border-color:             #ddd;
-$nav-tabs-link-hover-border-color:  #ddd #ddd #444;
-$nav-tabs-link-active-color:        #fff;
+$nav-tabs-border-color:             #95B2DB;
+$nav-tabs-link-hover-border-color:  #95B2DB #95B2DB #95B2DB;
+$nav-tabs-link-active-color:        #95B2DB;
 $nav-tabs-link-active-bg:           transparent;
-$nav-tabs-link-active-border-color: #ddd #ddd #444;
+$nav-tabs-link-active-border-color: #95B2DB #95B2DB #95B2DB;
 
-$breadcrumb-divider-color: #fff;
+$breadcrumb-divider-color: #95B2DB;
 
-$navbar-dark-toggler-border-color:  rgba(#ddd, .1);
+$navbar-dark-toggler-border-color:  #95B2DB;
 
-$dropdown-bg:               #444;
-$dropdown-border-color:     #444;
-$dropdown-link-color:       #ddd;
+$dropdown-bg:               #0E316D;
+$dropdown-border-color:     #95B2DB;
+$dropdown-link-color:       #95B2DB;
 $dropdown-link-hover-color: #ddd;
-$dropdown-link-hover-bg:    rgba(#444, 1.1);
+$dropdown-link-hover-bg:    #0055C4;
 
-$hr-border-color:           #ddd;
+$hr-border-color:           #95B2DB;
 
 $headings-font-family:      'Balthazar', serif;
 $font-family-sans-serif:    'Open Sans';
 
-$pagination-bg:             #666;
+$pagination-bg:             #0E316D;
 $pagination-border-color:   $pagination-bg;
 $pagination-hover-bg:       $pagination-bg;
 $pagination-hover-border-color:     $pagination-bg;
-$pagination-active-bg: #999;
+$pagination-active-bg: #0055C4;
 $pagination-disabled-color:         #bbb;
 $pagination-disabled-bg:            $pagination-bg;
 $pagination-disabled-border-color:  $pagination-bg;
 
-$card-bg:                   #444;
-$card-cap-bg:               #666;
+$card-bg:                   #0E316D;
+$card-cap-bg:               #0E316D;
 
-$input-bg:                  #666;
-$input-disabled-bg:         #666;
+$input-bg:                  #0055C4;
+$input-disabled-bg:         #0E316D;
 $input-color:               #fff;
 $input-placeholder-color:   #ccc;
-$custom-control-indicator-bg: #999;
-$input-group-addon-bg:  #999;
+$custom-control-indicator-bg: #0055C4;
+$input-group-addon-bg:  #0055C4;
 $input-group-addon-color: #fff;
 
-$breadcrumb-bg: #666;
-$breadcrumb-active-color: #ccc;
+$breadcrumb-bg: #0E316D;
+$breadcrumb-active-color: #95B2DB;
 
-$list-group-bg: #444;
-$list-group-hover-bg: #666;
+$list-group-bg: #0E316D;
+$list-group-hover-bg: #0055C4;
 $list-group-action-color: #ddd;
 
-$modal-content-bg: #444;
+$modal-content-bg: #0E316D;
 
-$popover-bg: #666;
+$popover-bg: #0055C4;
 
-$progress-bar-bg: #666;
+$progress-bar-bg: #0055C4;
 $progress-bar-color: #ddd;
-$progress-bg: #444;
+$progress-bg: #0E316D;
 
 /* Show it is fixed to the top */
 body {
@@ -112,8 +114,8 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
-  background-color: #666;
-  color: #fff
+  background-color: #0E316D;
+  color: #95B2DB;
 }
 
 p.lead {
@@ -123,12 +125,12 @@ p.lead {
 .blog-post-head {
   width: 100%;
   height: 300px;
-  background-color: #666;
+  background-color: #0E316D;
   padding: 2rem;
 }
 
 .card-header {
-  color: #fff;
+  color: #95B2DB;
 }
 
 .card-footer {
@@ -157,12 +159,12 @@ pre code {
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  background: #666;
+  background: #0E316D;
 }
 
 mark {
   color: #fff;
-  background-color: #999 !important;
+  background-color: #0E316D !important;
 }
 
 @import 'bootstrap';
@@ -219,6 +221,14 @@ svg.radical {
 }
 
 .navbar {
-  background: #333 !important;
-  border-bottom: 1px solid #666 !important;
+  background: #0E316D !important;
+  border-bottom: 1px solid #95B2DB !important;
+}
+
+.breadcrumb-item a {
+  color: #eee;
+}
+
+.card-title a {
+  color: #95B2DB;
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "/usr/lib/node_modules/eslint-config-airbnb",
+  "extends": "airbnb",
   "rules": {
     // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/master/docs/rules
     "jsx-a11y/accessible-emoji": "warn",

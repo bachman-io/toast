@@ -38,7 +38,7 @@ function GTAOnline({ data }) {
             <a
               className="nav-link active"
               id="summary-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#summary"
               role="tab"
               aria-controls="summary"
@@ -51,7 +51,7 @@ function GTAOnline({ data }) {
             <a
               className="nav-link"
               id="properties-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#properties"
               role="tab"
               aria-controls="properties"
@@ -64,7 +64,7 @@ function GTAOnline({ data }) {
             <a
               className="nav-link"
               id="vehicles-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#vehicles"
               role="tab"
               aria-controls="vehicles"
@@ -77,7 +77,7 @@ function GTAOnline({ data }) {
             <a
               className="nav-link"
               id="wishlist-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#wishlist"
               role="tab"
               aria-controls="wishlist"

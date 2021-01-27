@@ -9,7 +9,7 @@ module.exports = {
     title: 'Bachman I/O',
     description: 'The sort-of official website of Collin Bachman, I guess',
     author: 'Collin Bachman',
-    version: '2.0-alpha4',
+    version: '2.0-alpha5',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -33,8 +33,8 @@ module.exports = {
         name: 'Bachman I/O',
         short_name: 'Bachman I/O',
         start_url: '/',
-        background_color: '#444444',
-        theme_color: '#999999',
+        background_color: '#0055C4',
+        theme_color: '#95B2DB',
         display: 'browser',
         icon: 'src/images/manifest-image.png', // This path is relative to the root of the site.
       },

@@ -9,8 +9,8 @@ function Header() {
       <button
         className="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -20,9 +20,14 @@ function Header() {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
+          <li className="nav-item">
             <Link className="nav-link" to="/">
               Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/blog">
+              Blog
             </Link>
           </li>
           <li className="nav-item dropdown">
@@ -30,7 +35,7 @@ function Header() {
               className="nav-link dropdown-toggle"
               id="dropdown-gaming"
               role="button"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >

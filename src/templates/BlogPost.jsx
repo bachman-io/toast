@@ -29,7 +29,7 @@ function BlogPost({ data }) {
               </ol>
             </nav>
             <div className="card mb-4">
-              { coverImage && (
+              { coverImage.fluid && (
                 <picture>
                   <source type="image/webp" srcSet={coverImage.fluid.srcSetWebp} />
                   <source type="image/png" srcSet={coverImage.fluid.srcSet} />
@@ -37,6 +37,9 @@ function BlogPost({ data }) {
                 </picture>
               )}
               <div className="card-body">
+                { !coverImage.fluid && (
+                <h1 className="card-title display-1 text-center">{ title }</h1>
+                )}
                 <p className="lead text-center">{summary.summary}</p>
                 <hr />
                 <RichText json={content.json} />

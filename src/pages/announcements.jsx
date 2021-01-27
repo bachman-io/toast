@@ -36,6 +36,9 @@ function Announcements({ data }) {
               <h1>{ a.title }</h1>
               <p><em>{ a.publishDate }</em></p>
               <RichText json={a.content.json} />
+              <hr />
+              ~
+              <hr />
             </div>
           </div>
         ))}

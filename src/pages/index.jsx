@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import BlogPostSummary from '../components/Contentful/BlogPostSummary';
-import ReviewSummary from '../components/Contentful/ReviewSummary';
 import RichText from '../components/Contentful/RichText';
 
 function IndexPage({ data }) {
@@ -37,14 +36,15 @@ function IndexPage({ data }) {
             <div className="col" />
           </div>
         ) }
-        { (data.contentfulHomePage.showLatestPost && data.contentfulHomePage.showLatestReview) && (
+        { (data.contentfulHomePage.showLatestPost) && (
           <div className="row">
-            <div className="col">
+            <div className="col" />
+            <div className="col-10 mb-5">
               <div className="card-group h-100">
                 <BlogPostSummary cardTitle="Latest Blog Post" post={data.latestPost.nodes[0]} />
-                <ReviewSummary cardTitle="Latest Review" review={data.latestReview.nodes[0]} />
               </div>
             </div>
+            <div className="col" />
           </div>
         ) }
         <div className="row">
@@ -54,6 +54,9 @@ function IndexPage({ data }) {
             <h1>{ data.latestAnnouncement.nodes[0].title }</h1>
             <p><em>{ data.latestAnnouncement.nodes[0].publishDate }</em></p>
             <RichText json={data.latestAnnouncement.nodes[0].content.json} />
+            <button className="btn btn-primary" type="button">
+              <Link to="/announcements">Older Announcements...</Link>
+            </button>
           </div>
         </div>
       </div>
@@ -71,7 +74,6 @@ query HomePageQuery {
     showJumbotronButton
     showFeaturedPost
     showLatestPost,
-    showLatestReview,
     jumbotronHeading
     jumbotronSubheading
     jumbotronButtonText
@@ -113,26 +115,6 @@ query HomePageQuery {
       fullURI
     }
   }
-  latestReview: allContentfulReview(sort: {fields: publishDate, order: DESC}, limit: 1) {
-    nodes {
-      coverImage {
-        fluid {
-          src
-          srcSet
-          srcSetWebp
-        }
-        description
-      }
-      title
-      publishDate(fromNow: true)
-      summary {
-        summary
-      }
-      nsfw
-      score
-      slug
-    }
-  }
   latestAnnouncement: allContentfulAnnouncement(sort: {fields: publishDate, order: DESC}, limit: 1) {
     nodes {
       title
@@ -153,7 +135,6 @@ IndexPage.propTypes = {
       showJumbotron: PropTypes.bool.isRequired,
       showFeaturedPost: PropTypes.bool.isRequired,
       showLatestPost: PropTypes.bool.isRequired,
-      showLatestReview: PropTypes.bool.isRequired,
       jumbotronHeading: PropTypes.string.isRequired,
       jumbotronSubheading: PropTypes.string.isRequired,
       showJumbotronButton: PropTypes.bool.isRequired,
@@ -196,24 +177,6 @@ IndexPage.propTypes = {
         fullURI: PropTypes.string.isRequired,
       },
     ))).isRequired,
-    latestReview: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape({
-      coverImage: PropTypes.shape({
-        fluid: PropTypes.shape({
-          src: PropTypes.string,
-          srcSet: PropTypes.string,
-          srcSetWebp: PropTypes.string,
-        }),
-        description: PropTypes.string,
-      }),
-      title: PropTypes.string.isRequired,
-      publishDate: PropTypes.string.isRequired,
-      summary: PropTypes.shape({
-        summary: PropTypes.string.isRequired,
-      }).isRequired,
-      nsfw: PropTypes.bool.isRequired,
-      score: PropTypes.number.isRequired,
-      slug: PropTypes.string.isRequired,
-    }))).isRequired,
     latestAnnouncement: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
       publishDate: PropTypes.string.isRequired,
