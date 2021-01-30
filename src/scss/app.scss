@@ -87,6 +87,11 @@ $input-group-addon-color: #fff;
 $breadcrumb-bg: #0E316D;
 $breadcrumb-active-color: #95B2DB;
 
+$accordion-bg: #0E316D;
+$accordion-color: #95B2DB;
+$accordion-button-active-bg: #0055C4;
+$accordion-button-active-color: #ffffff;
+
 $list-group-bg: #0E316D;
 $list-group-hover-bg: #0055C4;
 $list-group-action-color: #ddd;
@@ -231,4 +236,8 @@ svg.radical {
 
 .card-title a {
   color: #95B2DB;
+}
+
+.sans-serif {
+  font-family: "Open Sans", sans-serif !important;
 }

@@ -33,346 +33,358 @@ function GTAOnline({ data }) {
           </div>
         </div>
         <hr />
-        <ul className="nav nav-tabs mb-3" id="gtaTabs" role="tablist">
-          <li className="nav-item" role="presentation">
-            <a
-              className="nav-link active"
-              id="summary-tab"
-              data-bs-toggle="tab"
-              href="#summary"
-              role="tab"
-              aria-controls="summary"
-              aria-selected="true"
+        <div className="accordion" id="gtaAcc">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="summaryHeading">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#summary"
+                aria-expanded="true"
+                aria-controls="summary"
+              >
+                Summary
+              </button>
+            </h2>
+            <div
+              id="summary"
+              className="accordion-collapse collapse show"
+              aria-labelledby="summaryHeading"
+              data-bs-parent="#gtaAcc"
             >
-              Summary
-            </a>
-          </li>
-          <li className="nav-item" role="presentation">
-            <a
-              className="nav-link"
-              id="properties-tab"
-              data-bs-toggle="tab"
-              href="#properties"
-              role="tab"
-              aria-controls="properties"
-              aria-selected="false"
-            >
-              Properties
-            </a>
-          </li>
-          <li className="nav-item" role="presentation">
-            <a
-              className="nav-link"
-              id="vehicles-tab"
-              data-bs-toggle="tab"
-              href="#vehicles"
-              role="tab"
-              aria-controls="vehicles"
-              aria-selected="false"
-            >
-              Vehicles
-            </a>
-          </li>
-          <li className="nav-item" role="presentation">
-            <a
-              className="nav-link"
-              id="wishlist-tab"
-              data-bs-toggle="tab"
-              href="#wishlist"
-              role="tab"
-              aria-controls="wishlist"
-              aria-selected="false"
-            >
-              Wish List
-            </a>
-          </li>
-        </ul>
-        <div className="tab-content" id="gtaTabContent">
-          <div
-            className="tab-pane fade show active"
-            id="summary"
-            role="tabpanel"
-            aria-labelledby="summary-tab"
-          >
-            <p>
-              Here&apos;s a quick overview of my GTA online account&apos;s current financial
-              situation.
-            </p>
-            <h2>Money Breakdown</h2>
-            <table className="table mb-5">
-              <thead>
-                <tr>
-                  <th scope="col">&nbsp;</th>
-                  <th scope="col">GTA Dollars</th>
-                  <th scope="col">USD Value in Shark Cards</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Property Value</th>
-                  <td>
-                    { data.propertyworth.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.propertyworth.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Vehicle Value</th>
-                  <td>
-                    { data.vehicleworth.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.vehicleworth.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Total Account Value</th>
-                  <td>
-                    { data.totalworth.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.totalworth.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Wish List Total Cost</th>
-                  <td>
-                    { data.cost.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.cost.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Money in Bank</th>
-                  <td>
-                    { data.bank.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.bank.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Money Left to Grind</th>
-                  <td>
-                    { data.grindcashleft.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.grindcashleft.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Grind Money Per Day</th>
-                  <td>
-                    { data.grindcashday.summaryAmount.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                  <td>
-                    { data.grindcashday.summarySharkCards.toLocaleString(
-                      'en-us',
-                      { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                    )}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <h2>The Grind</h2>
-            <table className="table mb-5">
-              <tbody>
-                <tr>
-                  <th scope="row">Grind Days Remaining</th>
-                  <td>{ data.grinddays.summaryAmount }</td>
-                </tr>
-                <tr>
-                  <th scope="row">Average Days to Grind Per Item</th>
-                  <td>{ data.avggrind.summaryAmount }</td>
-                </tr>
-                <tr>
-                  <th scope="row">Wish List Completion Date</th>
-                  <td>{ new Date(data.finishdate.summaryDate).toLocaleDateString() }</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div
-            className="tab-pane fade"
-            id="properties"
-            role="tabpanel"
-            aria-labelledby="properties-tab"
-          >
-            <p>These are all the properties I own in the game and their worth.</p>
-            { data.properties.propertytypes.map((t) => (
-              <React.Fragment key={t.propertytype}>
-                <h3>{ t.propertytype }</h3>
-                <table className="table">
+              <div className="accordion-body">
+                <p>
+                  Here&apos;s a quick overview of my GTA online account&apos;s current financial
+                  situation.
+                </p>
+                <h2>Money Breakdown</h2>
+                <table className="table mb-5">
                   <thead>
                     <tr>
-                      <th scope="col">Property Name</th>
-                      <th scope="col">Location</th>
-                      <th scope="col">Cost</th>
-                      <th scope="col">More Info</th>
+                      <th scope="col">&nbsp;</th>
+                      <th scope="col">GTA Dollars</th>
+                      <th scope="col">USD Value in Shark Cards</th>
                     </tr>
                   </thead>
                   <tbody>
-                    { t.nodes.map((p) => (
-                      <tr key={p.propertyName}>
-                        <td>{ p.propertyName }</td>
-                        <td>{ p.location }</td>
-                        <td>
-                          { p.cost.toLocaleString(
-                            'en-us',
-                            { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                          )}
-                        </td>
-                        <td>
-                          <a className="btn btn-sm btn-primary" href={p.gtaBaseLink} target="_blank" rel="nofollow noreferrer">GTA Base</a>
-                          {' '}
-                          <a className="btn btn-sm btn-primary" href={p.gtaWikiLink} target="_blank" rel="nofollow noreferrer">GTA Wiki</a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </React.Fragment>
-            ))}
-          </div>
-          <div
-            className="tab-pane fade"
-            id="vehicles"
-            role="tabpanel"
-            aria-labelledby="vehicles-tab"
-          >
-            <p>These are all the vehicles I own in the game and their worth.</p>
-            { data.vehicles.locations.map((l) => (
-              <React.Fragment key={l.location}>
-                <h3>{ l.location }</h3>
-                <table className="table">
-                  <thead>
                     <tr>
-                      <th scope="col">Floor</th>
-                      <th scope="col">Vehicle</th>
-                      <th scope="col">Cost</th>
-                      <th scope="col">More Info</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    { l.nodes.map((v) => (
-                      <tr key={v.vehicle}>
-                        <td>{ v.floor }</td>
-                        <td>{ v.vehicle }</td>
-                        <td>
-                          { v.cost.toLocaleString(
-                            'en-us',
-                            { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                          )}
-                        </td>
-                        <td>
-                          <a className="btn btn-sm btn-primary" href={v.gtaBaseLink} target="_blank" rel="nofollow noreferrer">GTA Base</a>
-                          {' '}
-                          <a className="btn btn-sm btn-primary" href={v.gtaWikiLink} target="_blank" rel="nofollow noreferrer">GTA Wiki</a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </React.Fragment>
-            ))}
-          </div>
-          <div
-            className="tab-pane fade"
-            id="wishlist"
-            role="tabpanel"
-            aria-labelledby="wishlist-tab"
-          >
-            <p>
-              This is a list of all the things I want to buy in GTA Online. If something has a
-              {' '}
-              zero time/money remaining, it means I have enough GTA$ to buy it, but am waiting for a
-              {' '}
-              sale or am otherwise putting it off until my grinding is done (see Summary tab).
-            </p>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Item</th>
-                  <th scope="col">Buy At</th>
-                  <th scope="col">&nbsp;</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Remaining</th>
-                </tr>
-              </thead>
-              <tbody>
-                { data.wishlist.nodes.map((g) => (
-                  <React.Fragment key={g.item}>
-                    <tr>
-                      <th scope="row" rowSpan="2">{ g.item }</th>
-                      <td rowSpan="2">{ g.buyAt }</td>
-                      <td><strong>Cost:</strong></td>
+                      <th scope="row">Property Value</th>
                       <td>
-                        { g.cost.toLocaleString(
+                        { data.propertyworth.summaryAmount.toLocaleString(
                           'en-us',
                           { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
                         )}
                       </td>
                       <td>
-                        { g.moneyToGrind > 0 ? g.moneyToGrind.toLocaleString(
+                        { data.propertyworth.summarySharkCards.toLocaleString(
                           'en-us',
                           { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
-                        ) : 0}
+                        )}
                       </td>
                     </tr>
                     <tr>
-                      <td><strong>Grind Days: </strong></td>
+                      <th scope="row">Vehicle Value</th>
                       <td>
-                        { g.totalGrindDays }
+                        { data.vehicleworth.summaryAmount.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
                       </td>
                       <td>
-                        { g.daysToGrind > 0 ? g.daysToGrind : 0 }
+                        { data.vehicleworth.summarySharkCards.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
                       </td>
                     </tr>
+                    <tr>
+                      <th scope="row">Total Account Value</th>
+                      <td>
+                        { data.totalworth.summaryAmount.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                      <td>
+                        { data.totalworth.summarySharkCards.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Wish List Total Cost</th>
+                      <td>
+                        { data.cost.summaryAmount.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                      <td>
+                        { data.cost.summarySharkCards.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Money in Bank</th>
+                      <td>
+                        { data.bank.summaryAmount.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                      <td>
+                        { data.bank.summarySharkCards.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Money Left to Grind</th>
+                      <td>
+                        { data.grindcashleft.summaryAmount.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                      <td>
+                        { data.grindcashleft.summarySharkCards.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Grind Money Per Day</th>
+                      <td>
+                        { data.grindcashday.summaryAmount.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                      <td>
+                        { data.grindcashday.summarySharkCards.toLocaleString(
+                          'en-us',
+                          { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                        )}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h2>The Grind</h2>
+                <table className="table mb-5">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Grind Days Remaining</th>
+                      <td>{ data.grinddays.summaryAmount }</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Average Days to Grind Per Item</th>
+                      <td>{ data.avggrind.summaryAmount }</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Wish List Completion Date</th>
+                      <td>{ new Date(data.finishdate.summaryDate).toLocaleDateString() }</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="propertiesHeading">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#properties"
+                aria-expanded="false"
+                aria-controls="properties"
+              >
+                Properties
+              </button>
+            </h2>
+            <div
+              id="properties"
+              className="accordion-collapse collapse"
+              aria-labelledby="propertiesHeading"
+              data-bs-parent="#gtaAcc"
+            >
+              <div className="accordion-body">
+                <p>These are all the properties I own in the game and their worth.</p>
+                { data.properties.propertytypes.map((t) => (
+                  <React.Fragment key={t.propertytype}>
+                    <h3>{ t.propertytype }</h3>
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Property Name</th>
+                          <th scope="col">Location</th>
+                          <th scope="col">Cost</th>
+                          <th scope="col">More Info</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        { t.nodes.map((p) => (
+                          <tr key={p.propertyName}>
+                            <td>{ p.propertyName }</td>
+                            <td>{ p.location }</td>
+                            <td>
+                              { p.cost.toLocaleString(
+                                'en-us',
+                                { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                              )}
+                            </td>
+                            <td>
+                              <a className="btn btn-sm btn-primary" href={p.gtaBaseLink} target="_blank" rel="nofollow noreferrer">GTA Base</a>
+                              {' '}
+                              <a className="btn btn-sm btn-primary" href={p.gtaWikiLink} target="_blank" rel="nofollow noreferrer">GTA Wiki</a>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </React.Fragment>
-                )) }
-              </tbody>
-            </table>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="vehiclesHeading">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#vehicles"
+                aria-expanded="false"
+                aria-controls="vehicles"
+              >
+                Vehicles
+              </button>
+            </h2>
+            <div
+              id="vehicles"
+              className="accordion-collapse collapse"
+              aria-labelledby="vehiclesHeading"
+              data-bs-parent="#gtaAcc"
+            >
+              <div className="accordion-body">
+                <p>These are all the vehicles I own in the game and their worth.</p>
+                { data.vehicles.locations.map((l) => (
+                  <React.Fragment key={l.location}>
+                    <h3>{ l.location }</h3>
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Floor</th>
+                          <th scope="col">Vehicle</th>
+                          <th scope="col">Cost</th>
+                          <th scope="col">More Info</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        { l.nodes.map((v) => (
+                          <tr key={v.vehicle}>
+                            <td>{ v.floor }</td>
+                            <td>{ v.vehicle }</td>
+                            <td>
+                              { v.cost.toLocaleString(
+                                'en-us',
+                                { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                              )}
+                            </td>
+                            <td>
+                              <a className="btn btn-sm btn-primary" href={v.gtaBaseLink} target="_blank" rel="nofollow noreferrer">GTA Base</a>
+                              {' '}
+                              <a className="btn btn-sm btn-primary" href={v.gtaWikiLink} target="_blank" rel="nofollow noreferrer">GTA Wiki</a>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="wishListHeading">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#wishList"
+                aria-expanded="false"
+                aria-controls="wishList"
+              >
+                Wish List
+              </button>
+            </h2>
+            <div
+              id="wishList"
+              className="accordion-collapse collapse"
+              aria-labelledby="wishListHeading"
+              data-bs-parent="#gtaAcc"
+            >
+              <div className="accordion-body">
+                <p>
+                  This is a list of all the things I want to buy in GTA Online. If something has a
+                  {' '}
+                  zero time/money remaining, it means I have enough GTA$ to buy it, but am waiting
+                  {' '}
+                  for a sale or am otherwise putting it off until my grinding is done (see Summary
+                  {' '}
+                  tab).
+                </p>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Item</th>
+                      <th scope="col">Buy At</th>
+                      <th scope="col">&nbsp;</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Remaining</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { data.wishlist.nodes.map((g) => (
+                      <React.Fragment key={g.item}>
+                        <tr>
+                          <th scope="row" rowSpan="2">{ g.item }</th>
+                          <td rowSpan="2">{ g.buyAt }</td>
+                          <td><strong>Cost:</strong></td>
+                          <td>
+                            { g.cost.toLocaleString(
+                              'en-us',
+                              { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                            )}
+                          </td>
+                          <td>
+                            { g.moneyToGrind > 0 ? g.moneyToGrind.toLocaleString(
+                              'en-us',
+                              { style: 'currency', currency: 'USD', minimumFractionDigits: 0 },
+                            ) : 0}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>Grind Days: </strong></td>
+                          <td>
+                            { g.totalGrindDays }
+                          </td>
+                          <td>
+                            { g.daysToGrind > 0 ? g.daysToGrind : 0 }
+                          </td>
+                        </tr>
+                      </React.Fragment>
+                    )) }
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
