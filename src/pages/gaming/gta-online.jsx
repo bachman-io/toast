@@ -196,6 +196,78 @@ function GTAOnline({ data }) {
             </div>
           </div>
           <div className="accordion-item">
+            <h2 className="accordion-header" id="earningsHeading">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#earnings"
+                aria-expanded="false"
+                aria-controls="earnings"
+              >
+                Earnings
+              </button>
+            </h2>
+            <div
+              id="earnings"
+              className="accordion-collapse collapse"
+              aria-labelledby="earningsHeading"
+              data-bs-parent="#gtaAcc"
+            >
+              <div className="accordion-body">
+                <p>
+                  This is a log of year-to-date earnings in GTA.
+                </p>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Balance</th>
+                      <th scope="col">Earnings</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { data.earnings.nodes.map((e) => (
+                      <React.Fragment key={e.balanceDate}>
+                        { e.balanceDate
+                      && (
+                        <tr>
+                          <td>{ new Date(e.balanceDate).toLocaleDateString('en-US', { timeZone: 'America/New_York' }) }</td>
+                          <td>
+                            { e.balance > 0 ? e.balance.toLocaleString(
+                              'en-us',
+                              {
+                                style: 'currency',
+                                currency: 'USD',
+                                currencySign: 'accounting',
+                                minimumFractionDigits: 0,
+                              },
+                            ) : 0}
+                          </td>
+                          <td style={
+                            { color: e.earnings > 0 ? 'lightgreen' : 'orange' }
+                          }
+                          >
+                            { e.earnings.toLocaleString(
+                              'en-us',
+                              {
+                                style: 'currency',
+                                currency: 'USD',
+                                currencySign: 'accounting',
+                                minimumFractionDigits: 0,
+                              },
+                            )}
+                          </td>
+                        </tr>
+                      )}
+                      </React.Fragment>
+                    )) }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
             <h2 className="accordion-header" id="propertiesHeading">
               <button
                 className="accordion-button collapsed"
@@ -396,44 +468,44 @@ export default GTAOnline;
 
 export const pageQuery = graphql`
 query GTAQuery {
-  propertyworth: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Property Value"}) {
+  propertyworth: googleSheetGtaStatsSummary(summaryTitle: {eq: "Total Property Value"}) {
     summaryAmount
     summarySharkCards
   }
-  vehicleworth: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Vehicle Value"}) {
+  vehicleworth: googleSheetGtaStatsSummary(summaryTitle: {eq: "Total Vehicle Value"}) {
     summaryAmount
     summarySharkCards
   }
-  totalworth: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Account Value"}) {
+  totalworth: googleSheetGtaStatsSummary(summaryTitle: {eq: "Total Account Value"}) {
     summaryAmount
     summarySharkCards
   }
-  cost: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Total Wish List Cost"}) {
+  cost: googleSheetGtaStatsSummary(summaryTitle: {eq: "Total Wish List Cost"}) {
     summaryAmount
     summarySharkCards
   }
-  bank: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Money in Bank"}) {
+  bank: googleSheetGtaStatsSummary(summaryTitle: {eq: "Money in Bank"}) {
     summaryAmount
     summarySharkCards
   }
-  grindcashleft: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Money Left to Grind"}) {
+  grindcashleft: googleSheetGtaStatsSummary(summaryTitle: {eq: "Money Left to Grind"}) {
     summaryAmount
     summarySharkCards
   }
-  grindcashday: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Grind Money Per Day"}) {
+  grindcashday: googleSheetGtaStatsSummary(summaryTitle: {eq: "Grind Money Per Day"}) {
     summaryAmount
     summarySharkCards
   }
-  grinddays: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Grind Days Remaining"}) {
+  grinddays: googleSheetGtaStatsSummary(summaryTitle: {eq: "Grind Days Remaining"}) {
     summaryAmount
   }
-  avggrind: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Average Days to Grind"}) {
+  avggrind: googleSheetGtaStatsSummary(summaryTitle: {eq: "Average Days to Grind"}) {
     summaryAmount
   }
-  finishdate: googleSheetGameStatsGtaSummary(summaryTitle: {eq: "Wish List Completion Date"}) {
+  finishdate: googleSheetGtaStatsSummary(summaryTitle: {eq: "Wish List Completion Date"}) {
     summaryDate
   }
-  properties: allGoogleSheetGameStatsGtaProperties(sort: {fields: propertyName, order: ASC}) {
+  properties: allGoogleSheetGtaStatsProperties(sort: {fields: propertyName, order: ASC}) {
     propertytypes: group(field: propertyType) {
       propertytype: fieldValue
       nodes {
@@ -445,7 +517,7 @@ query GTAQuery {
       }
     }
   }
-  vehicles: allGoogleSheetGameStatsGtaVehicles(sort: {fields: floor, order: ASC}) {
+  vehicles: allGoogleSheetGtaStatsVehicles(sort: {fields: floor, order: ASC}) {
     locations: group(field: location) {
       location: fieldValue
       nodes {
@@ -457,7 +529,7 @@ query GTAQuery {
       }
     }
   }
-  wishlist: allGoogleSheetGameStatsGtaWishList(sort: {fields: daysToGrind, order: DESC}) {
+  wishlist: allGoogleSheetGtaStatsWishList(sort: {fields: daysToGrind, order: DESC}) {
     nodes {
       item
       buyAt
@@ -465,6 +537,15 @@ query GTAQuery {
       daysToGrind
       totalGrindDays
       moneyToGrind
+    }
+  }
+  earnings: allGoogleSheetGtaStatsEarnings {
+    nodes {
+      balanceDate
+      balance
+      earnings
+      maxBalance
+      maxEarnings
     }
   }
 }
@@ -513,6 +594,9 @@ GTAOnline.propTypes = {
     vehicles: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
     properties: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
     wishlist: PropTypes.shape({
+      nodes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }).isRequired,
+    earnings: PropTypes.shape({
       nodes: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
   }).isRequired,
