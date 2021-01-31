@@ -58,7 +58,7 @@ module.exports = {
       resolve: 'gatsby-source-google-spreadsheet',
       options: {
         spreadsheetId: '1OfEJQjGGILU4P0A4W5OM49qULxSevWhxwCwMJWD2hU8',
-        spreadsheetName: 'GameStats',
+        spreadsheetName: 'GtaStats',
         typePrefix: 'GoogleSheet',
         credentials: JSON.parse(GOOGLE_JSON),
       },
